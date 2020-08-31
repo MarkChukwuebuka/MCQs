@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+
+  Best Online Voting Portal
+
+{% endblock title %}
+
+
+{% block content %}
+
+    
+    <h1 class="text-center">{{ story.title }}</h1>
+    
+    <p>{{ story.story }}</p>
+
+    <h3>Instructions</h3>
+
+    <ul>
+        <li>Instruction 1</li>
+        <li>Instruction 2</li>
+        <li>Instruction 3</li>
+        <li>Instruction 4</li>
+        <li>Instruction 5</li>
+    </ul>
+
+    
+    {% for question in questions %}
+
+      <a href="{% url 'test' question.id %}">{{question.id}}</a>
+
+    {% endfor %}
+    
+{% endblock content %}
+

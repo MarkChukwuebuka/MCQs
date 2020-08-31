@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+
+  Best Online Voting Portal
+
+{% endblock title %}
+
+
+{% block content %}
+
+    
+    <h1 class="text-center">{{ story.title }}</h1>
+    
+    <p>{{ story.story }}</p>
+
+    <form method="POST" action="{% url 'test' question.id %}">
+      {% csrf_token %}
+
+      <div>
+        <p>{{ question.question }}</p>
+        <input type="radio" name="{{ question.question }}" id="a" value="{{ choice_one }}" required>
+        <label for="a">{{ question.choice_one }}</label><br>
+
+        <input type="radio" name="{{ question.question }}" id="b" value="{{ choice_two }}" required>
+        <label for="b">{{ question.choice_two }}</label><br>
+
+        <input type="radio" name="{{ question.question }}" id="c" value="{{ choice_three }}" required>
+        <label for="c">{{ question.choice_three }}</label><br>
+
+        <input type="radio" name="{{ question.question }}" id="d" value="{{ choice_four }}" required>
+        <label for="d">{{ question.choice_four }}</label><br>
+      </div>
+
+      <button type="submit">Done</button>
+
+    </form>
+      
+
+
+     {% for question in questions %}
+
+        <a href="{% url 'test' question.id %}">{{question.id}}</a>
+
+     {% endfor %}
+{% endblock content %}
+
